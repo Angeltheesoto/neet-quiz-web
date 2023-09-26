@@ -91,26 +91,6 @@ const Home = ({ fetchLsData, setFetchLsData }) => {
   };
   // *console.log("Selected questions: ", selectedQuizQuestions);
 
-  // !Displays topbar genres using GenreItem comp.
-  const renderGenreItem = ({ item, index }) => (
-    <GenreItem
-      item={item}
-      index={index}
-      handleGenreSelect={handleGenreSelect}
-      genre={genre}
-    />
-  );
-
-  // !Displays quiz titles using ListItem comp.
-  const renderQuizItem = ({ item }) => (
-    <div
-      onClick={() => handleQuizSelect(item)}
-      style={{ border: "1px solid red" }}
-    >
-      <ListItem title={item} genre={genre} />
-    </div>
-  );
-
   // !Gets local storage data to display saved quizes.
   const fetchLocalStorageData = async () => {
     const data = await localStorage.getItem("bookmarkedItems");
@@ -141,18 +121,14 @@ const Home = ({ fetchLsData, setFetchLsData }) => {
         }
       };
       if (currentRouteName === "/") {
-        return (
-          // <FlatList
-          //   data={quizKeys}
-          //   renderItem={renderQuizItem}
-          //   keyExtractor={(item) => item}
-          //   contentContainerStyle={[
-          //     styles.quizListContainer,
-          //     theme ? lightTheme.background : darkTheme.background,
-          //   ]}
-          // />
-          quizKeys?.map((item) => renderQuizItem(item))
-        );
+        return quizKeys?.map((item) => (
+          <div
+            onClick={() => handleQuizSelect(item)}
+            className="home-quizlist-container"
+          >
+            <ListItem title={item} genre={genre} />
+          </div>
+        ));
       } else if (currentRouteName === "/saved") {
         if (savedQuizTitles() === undefined) {
           return (
@@ -167,18 +143,14 @@ const Home = ({ fetchLsData, setFetchLsData }) => {
             </p>
           );
         } else {
-          return (
-            // <FlatList
-            //   data={savedQuizTitles()}
-            //   renderItem={renderQuizItem}
-            //   keyExtractor={(item) => item}
-            //   contentContainerStyle={[
-            //     styles.quizListContainer,
-            //     theme ? lightTheme.background : darkTheme.background,
-            //   ]}
-            // />
-            savedQuizTitles().map((item) => renderQuizItem(item))
-          );
+          return savedQuizTitles().map((item) => (
+            <div
+              onClick={() => handleQuizSelect(item)}
+              className="home-quizlist-container"
+            >
+              <ListItem title={item} genre={genre} />
+            </div>
+          ));
         }
       } else {
         return null;
@@ -224,12 +196,22 @@ const Home = ({ fetchLsData, setFetchLsData }) => {
 
   // !Goes to previous question. For [renderQuizQuestions].
   const handleGoBack = () => {
-    if (idCount == 0) {
-      setSelectedQuizQuestions(null);
+    if (idCount === 0) {
+      // setSelectedQuizQuestions(null);
+      try {
+        // handleGenreSelect(genre);
+        setSelectedQuizQuestions(null);
+      } catch (err) {
+        console.log(`Error: ${err}`);
+      }
     } else {
-      setIdCount((prev) => (prev -= 1));
+      setIdCount((prev) => (prev > 0 ? (prev -= 1) : prev));
     }
   };
+
+  // useEffect(() => {
+  //   console.log(selectedQuizQuestions);
+  // }, [selectedQuizQuestions]);
 
   // !Goes to next question. For [renderQuizQuestions].
   const handleNext = () => {
@@ -266,18 +248,19 @@ const Home = ({ fetchLsData, setFetchLsData }) => {
   }, [savedQuiz, fetchLsData]);
   // console.log(savedQuiz);
 
-  // !Fetch local storage data
-  useEffect(() => {
-    fetchLocalStorageData();
-  }, [savedQuiz, fetchLsData]);
-  // console.log(savedQuiz);
-
   return (
     <>
-      <div style={{ border: "2px solid blue", minHeight: "3rem" }}>
-        {Object.keys(data.quizes).map((genre) => renderGenreItem(genre))}
+      <div className="home-genre-container">
+        {Object.keys(data.quizes).map((genre, index) => (
+          <GenreItem
+            item={genre}
+            index={index}
+            handleGenreSelect={handleGenreSelect}
+            genre={genre}
+          />
+        ))}
       </div>
-      <div style={{ border: "2px solid green" }}>
+      <div className="home-quizname-container">
         {selectedQuizQuestions ? renderQuizQuestions() : renderQuizList()}
       </div>
     </>

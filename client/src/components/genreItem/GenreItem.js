@@ -7,9 +7,10 @@ const GenreItem = ({ item, index, handleGenreSelect, genre }) => {
   const { theme } = useContext(MyContext);
 
   return (
-    <div>
+    <>
       <div
         onClick={() => handleGenreSelect(item)}
+        className="genreitem-container"
         // style={[
         //   styles.genreContainer,
         //   theme ? lightTheme.background : darkTheme.background,
@@ -39,7 +40,7 @@ const GenreItem = ({ item, index, handleGenreSelect, genre }) => {
           </p>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -106,29 +106,29 @@ const ListItem = ({ title, genre }) => {
 
   return (
     <div
-    // style={[styles.container, theme ? null : { backgroundColor: "gray" }]}
+      className="listitem-container"
+      // style={[styles.container, theme ? null : { backgroundColor: "gray" }]}
     >
       <p
       // style={[styles.title, theme ? null : darkTheme.text]}
       >
-        title
         {title}
       </p>
-      <div onClick={handleSave} className="title-container">
+      <div onClick={handleSave} className="title-bookmark-container">
         {savedQuiz && savedQuiz[genre] && savedQuiz[genre].includes(title) ? (
           // <Ionicons
           //   name="md-bookmark"
           //   size={26}
           //   color={theme ? "black" : "white"}
           // />
-          <img src="#" alt="Bookmarked" />
+          <p>Bookmarked</p>
         ) : (
           // <Ionicons
           //   name="md-bookmark-outline"
           //   size={26}
           //   color={theme ? "black" : "white"}
           // />
-          <img src="#" alt="Not Bookmarked" />
+          <p>Not Bookmarked</p>
         )}
       </div>
     </div>

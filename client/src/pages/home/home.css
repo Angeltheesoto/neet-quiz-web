@@ -1,0 +1,19 @@
+.home-genre-container {
+  border: 2px solid blue;
+  height: 5rem;
+  display: flex;
+  overflow: scroll;
+}
+
+.home-quizname-container {
+  border: 2px solid green;
+  padding: 3rem;
+}
+
+.home-quizlist-container {
+  border: 1px solid red;
+  display: flex;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 10px;
+}

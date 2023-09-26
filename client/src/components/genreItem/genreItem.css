@@ -1,0 +1,9 @@
+.genreitem-container {
+  border: 2px solid red;
+  margin: 0 2px;
+  padding: 10px;
+}
+
+.genreitem-container:hover {
+  cursor: pointer;
+}

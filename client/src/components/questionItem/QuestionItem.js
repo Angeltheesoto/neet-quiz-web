@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 // import { darkTheme, lightTheme } from "../styles/globalStyles";
 import "./questionItem.css";
 import MyContext from "../../context/MyContext";
@@ -80,7 +80,7 @@ const QuestionItem = ({
                   //    : null,
                 ]
               }
-              onPress={() => handleCheck(index)}
+              onClick={() => handleCheck(index)}
             >
               <p key={index}>{option}</p>
             </div>
@@ -96,6 +96,7 @@ const QuestionItem = ({
         <div>
           <div
             onClick={handleGoBack}
+            // onClick={handleGenreSelect(genre)}
             style={
               [
                 // styles.buttonStyle,
@@ -106,7 +107,7 @@ const QuestionItem = ({
             <p
             // style={theme ? null : darkTheme.text}
             >
-              {idCount == 0 ? "Exit Quiz" : "Back"}
+              {idCount === 0 ? "Exit Quiz" : "Back"}
             </p>
           </div>
           <div
@@ -191,6 +192,10 @@ const QuestionItem = ({
       </div>
     );
   };
+
+  // useEffect(() => {
+  //   console.log(handleGoBack);
+  // }, []);
 
   return (
     <div
