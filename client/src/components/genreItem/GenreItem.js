@@ -6,6 +6,8 @@ import MyContext from "../../context/MyContext";
 const GenreItem = ({ item, index, handleGenreSelect, genre }) => {
   const { theme } = useContext(MyContext);
 
+  // console.log(`GenreItem: ${item} ${index} ${genre} ${handleGenreSelect}`);
+
   return (
     <>
       <div

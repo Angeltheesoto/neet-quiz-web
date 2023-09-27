@@ -25,9 +25,6 @@ const Home = ({ fetchLsData, setFetchLsData }) => {
   const [savedQuiz, setSavedQuiz] = useState(null);
 
   // !COME BACK!
-  // const navigationState = useNavigationState((state) => state);
-  // const currentRouteName = navigationState.routes[navigationState.index].name;
-  // console.log(currentRouteName);
   const location = useLocation();
   const currentRouteName = location.pathname;
   // console.log(currentRouteName);
@@ -163,9 +160,6 @@ const Home = ({ fetchLsData, setFetchLsData }) => {
   // !Displays our chosen quiz and passes all props.
   const renderQuizQuestions = () => {
     const quizQuestions = data.quizes[genre][selectedQuiz].questions;
-    // const question = quizQuestions[idCount].question;
-    // const options = quizQuestions[idCount].options;
-    // const correctAnswer = quizQuestions[idCount].correctAnswer;
     const question = selectedQuizQuestions[idCount].question;
     const options = selectedQuizQuestions[idCount].options;
     const correctAnswer = selectedQuizQuestions[idCount].correctAnswer;
@@ -197,21 +191,13 @@ const Home = ({ fetchLsData, setFetchLsData }) => {
   // !Goes to previous question. For [renderQuizQuestions].
   const handleGoBack = () => {
     if (idCount === 0) {
-      // setSelectedQuizQuestions(null);
-      try {
-        // handleGenreSelect(genre);
-        setSelectedQuizQuestions(null);
-      } catch (err) {
-        console.log(`Error: ${err}`);
-      }
+      // handleGenreSelect();
+      // setSelectedQuizQuestions((prev) => (prev = null));
+      console.log("Home Page");
     } else {
       setIdCount((prev) => (prev > 0 ? (prev -= 1) : prev));
     }
   };
-
-  // useEffect(() => {
-  //   console.log(selectedQuizQuestions);
-  // }, [selectedQuizQuestions]);
 
   // !Goes to next question. For [renderQuizQuestions].
   const handleNext = () => {
@@ -225,15 +211,19 @@ const Home = ({ fetchLsData, setFetchLsData }) => {
 
   useEffect(() => {
     const updateQuizQuestions = async () => {
-      handleQuizQuestions();
+      try {
+        handleQuizQuestions();
 
-      // !Sets the quizLength onClick for here.
-      const hasQuizQuestions = data.quizes[genre][selectedQuiz]?.questions;
+        // !Sets the quizLength onClick for here.
+        const hasQuizQuestions = data.quizes[genre][selectedQuiz]?.questions;
 
-      if (hasQuizQuestions) {
-        setQuizLength(data.quizes[genre][selectedQuiz].questions.length);
-      } else {
-        setQuizLength(0);
+        if (hasQuizQuestions) {
+          setQuizLength(data.quizes[genre][selectedQuiz].questions.length);
+        } else {
+          setQuizLength(0);
+        }
+      } catch (err) {
+        console.log(`useEffect updateQuizQuestions error: ${err}`);
       }
     };
 
@@ -261,7 +251,19 @@ const Home = ({ fetchLsData, setFetchLsData }) => {
         ))}
       </div>
       <div className="home-quizname-container">
-        {selectedQuizQuestions ? renderQuizQuestions() : renderQuizList()}
+        {/* {selectedQuizQuestions ? renderQuizQuestions() : renderQuizList()} */}
+        {(() => {
+          try {
+            return selectedQuizQuestions
+              ? renderQuizQuestions()
+              : renderQuizList();
+          } catch (error) {
+            // Handle the error here
+            console.error("An error occurred during rendering:", error);
+            // You can return an error message or a fallback UI
+            return <div>An error occurred while rendering.</div>;
+          }
+        })()}
       </div>
     </>
   );

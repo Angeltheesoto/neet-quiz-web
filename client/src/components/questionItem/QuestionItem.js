@@ -107,7 +107,7 @@ const QuestionItem = ({
             <p
             // style={theme ? null : darkTheme.text}
             >
-              {idCount === 0 ? "Exit Quiz" : "Back"}
+              {idCount == 0 ? "Exit Quiz" : "Back"}
             </p>
           </div>
           <div
