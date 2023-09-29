@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import "./home.css";
 import data from "../../utils/data";
-import MyContext from "../../context/MyContext";
+// import MyContext from "../../context/MyContext";
 // !COME BACK!
 // import { darkTheme, lightTheme } from "../styles/globalStyles";
 import "../../css/lightTheme.css";
@@ -17,7 +17,7 @@ const Home = ({ fetchLsData, setFetchLsData }) => {
   const [genre, setGenre] = useState("javascript");
   const [selectedQuiz, setSelectedQuiz] = useState(null);
   const [selectedQuizQuestions, setSelectedQuizQuestions] = useState(null);
-  const [testQuizQuestions, setTestQuizQuestions] = useState(null);
+  // const [testQuizQuestions, setTestQuizQuestions] = useState(null);
 
   const [idCount, setIdCount] = useState(0);
   const [quizLength, setQuizLength] = useState(0);
@@ -29,7 +29,7 @@ const Home = ({ fetchLsData, setFetchLsData }) => {
   const currentRouteName = location.pathname;
   // console.log(currentRouteName);
 
-  const { theme } = useContext(MyContext);
+  // const { theme } = useContext(MyContext);
 
   // !Resets everything when you choose a new genre
   const handleGenreSelect = (gen) => {
@@ -192,8 +192,8 @@ const Home = ({ fetchLsData, setFetchLsData }) => {
   const handleGoBack = () => {
     if (idCount === 0) {
       // handleGenreSelect();
-      // setSelectedQuizQuestions((prev) => (prev = null));
-      console.log("Home Page");
+      setSelectedQuizQuestions((prev) => (prev = null));
+      // console.log("Home Page");
     } else {
       setIdCount((prev) => (prev > 0 ? (prev -= 1) : prev));
     }
@@ -211,19 +211,15 @@ const Home = ({ fetchLsData, setFetchLsData }) => {
 
   useEffect(() => {
     const updateQuizQuestions = async () => {
-      try {
-        handleQuizQuestions();
+      handleQuizQuestions();
 
-        // !Sets the quizLength onClick for here.
-        const hasQuizQuestions = data.quizes[genre][selectedQuiz]?.questions;
+      // !Sets the quizLength onClick for here.
+      const hasQuizQuestions = data.quizes[genre][selectedQuiz]?.questions;
 
-        if (hasQuizQuestions) {
-          setQuizLength(data.quizes[genre][selectedQuiz].questions.length);
-        } else {
-          setQuizLength(0);
-        }
-      } catch (err) {
-        console.log(`useEffect updateQuizQuestions error: ${err}`);
+      if (hasQuizQuestions) {
+        setQuizLength(data.quizes[genre][selectedQuiz].questions.length);
+      } else {
+        setQuizLength(0);
       }
     };
 
@@ -231,12 +227,27 @@ const Home = ({ fetchLsData, setFetchLsData }) => {
       updateQuizQuestions();
     }
   }, [selectedQuiz]);
+  // });
 
   // !Fetch local storage data
   useEffect(() => {
     fetchLocalStorageData();
   }, [savedQuiz, fetchLsData]);
   // console.log(savedQuiz);
+
+  // !TESTS________________>
+  // useEffect(() => {
+  //   console.log(`Genre changed: ${genre}`);
+  // }, [genre]);
+
+  // useEffect(() => {
+  //   console.log(`Quiz changed: ${selectedQuiz}`);
+  // }, [selectedQuiz]);
+
+  // useEffect(() => {
+  //   console.log(`Quiz Questions changed: ${selectedQuizQuestions}`);
+  // }, [selectedQuizQuestions]);
+  // !TESTS________________>
 
   return (
     <>
@@ -251,19 +262,7 @@ const Home = ({ fetchLsData, setFetchLsData }) => {
         ))}
       </div>
       <div className="home-quizname-container">
-        {/* {selectedQuizQuestions ? renderQuizQuestions() : renderQuizList()} */}
-        {(() => {
-          try {
-            return selectedQuizQuestions
-              ? renderQuizQuestions()
-              : renderQuizList();
-          } catch (error) {
-            // Handle the error here
-            console.error("An error occurred during rendering:", error);
-            // You can return an error message or a fallback UI
-            return <div>An error occurred while rendering.</div>;
-          }
-        })()}
+        {selectedQuizQuestions ? renderQuizQuestions() : renderQuizList()}
       </div>
     </>
   );
