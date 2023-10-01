@@ -9,21 +9,20 @@ import Saved from "./pages/Saved/Saved";
 import Settings from "./pages/settings/Settings";
 
 function App() {
-  // ----test
   const [fetchLsData, setFetchLsData] = useState(false);
-  // ----test
   const [theme, setTheme] = useState(true);
 
   const toggleTheme = (isLight) => {
     setTheme(isLight);
   };
 
+  // !Retrieves saved quizzes and theme from LS
   const initializeLocalStorage = async () => {
     try {
       const localBookmark = await localStorage.getItem("bookmarkedItems");
       if (!localBookmark) {
         localStorage.setItem("bookmarkedItems", JSON.stringify({}));
-        // console.log("LocalStorage initialized.");
+        console.log("LocalStorage initialized.");
       } else {
         console.log("LocalStorage already initialized.");
         // null;

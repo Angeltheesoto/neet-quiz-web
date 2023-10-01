@@ -13,7 +13,7 @@ import GenreItem from "../../components/genreItem/GenreItem";
 import QuestionItem from "../../components/questionItem/QuestionItem";
 import { useLocation } from "react-router-dom";
 
-const Home = ({ fetchLsData, setFetchLsData }) => {
+const Home = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
   const [genre, setGenre] = useState("javascript");
   const [selectedQuiz, setSelectedQuiz] = useState(null);
   const [selectedQuizQuestions, setSelectedQuizQuestions] = useState(null);
@@ -94,7 +94,7 @@ const Home = ({ fetchLsData, setFetchLsData }) => {
     if (data) {
       setSavedQuiz(JSON.parse(data));
     } else {
-      setSavedQuiz({});
+      setSavedQuiz(null);
     }
   };
   // *console.log(savedQuiz);
@@ -193,9 +193,9 @@ const Home = ({ fetchLsData, setFetchLsData }) => {
     if (idCount === 0) {
       // handleGenreSelect();
       setSelectedQuizQuestions((prev) => (prev = null));
-      // console.log("Home Page");
     } else {
       setIdCount((prev) => (prev > 0 ? (prev -= 1) : prev));
+      // console.log(idCount);
     }
   };
 
@@ -203,6 +203,7 @@ const Home = ({ fetchLsData, setFetchLsData }) => {
   const handleNext = () => {
     if (idCount < quizLength - 1) {
       setIdCount((prev) => (prev += 1));
+      console.log(idCount);
     } else {
       // console.log("You reached the end of the quiz.");
       setIsEnd(!isEnd);
@@ -227,7 +228,6 @@ const Home = ({ fetchLsData, setFetchLsData }) => {
       updateQuizQuestions();
     }
   }, [selectedQuiz]);
-  // });
 
   // !Fetch local storage data
   useEffect(() => {
@@ -236,17 +236,17 @@ const Home = ({ fetchLsData, setFetchLsData }) => {
   // console.log(savedQuiz);
 
   // !TESTS________________>
-  // useEffect(() => {
-  //   console.log(`Genre changed: ${genre}`);
-  // }, [genre]);
+  useEffect(() => {
+    console.log(`Genre changed: ${genre}`);
+  }, [genre]);
 
-  // useEffect(() => {
-  //   console.log(`Quiz changed: ${selectedQuiz}`);
-  // }, [selectedQuiz]);
+  useEffect(() => {
+    console.log(`Quiz changed: ${selectedQuiz}`);
+  }, [selectedQuiz]);
 
-  // useEffect(() => {
-  //   console.log(`Quiz Questions changed: ${selectedQuizQuestions}`);
-  // }, [selectedQuizQuestions]);
+  useEffect(() => {
+    console.log(`Quiz Questions changed: ${selectedQuizQuestions}`);
+  }, [selectedQuizQuestions]);
   // !TESTS________________>
 
   return (

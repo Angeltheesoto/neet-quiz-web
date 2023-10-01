@@ -58,11 +58,11 @@ const QuestionItem = ({
           {question}
         </p>
         <p
-          style={
-            [
-              //  theme ? lightTheme.text : darkTheme.text,
-            ]
-          }
+        // style={
+        //   [
+        //      theme ? lightTheme.text : darkTheme.text,
+        //   ]
+        // }
         >
           {idCount + 1} / {lengthOfQuiz}
         </p>
@@ -70,16 +70,16 @@ const QuestionItem = ({
           {options?.map((option, index) => (
             <div
               key={index}
-              style={
-                [
-                  //  styles.questionItem,
-                  //  currentQuiz[questionNum].isReveal
-                  //    ? index == correctAnswer
-                  //      ? styles.correct
-                  //      : styles.incorrect
-                  //    : null,
-                ]
-              }
+              // style={
+              //   [
+              //      styles.questionItem,
+              //      currentQuiz[questionNum].isReveal
+              //        ? index == correctAnswer
+              //          ? styles.correct
+              //          : styles.incorrect
+              //        : null,
+              //   ]
+              // }
               onClick={() => handleCheck(index)}
             >
               <p key={index}>{option}</p>
@@ -97,12 +97,12 @@ const QuestionItem = ({
           <div
             onClick={handleGoBack}
             // onClick={handleGenreSelect(genre)}
-            style={
-              [
-                // styles.buttonStyle,
-                // theme ? null : darkTheme.buttonContainer,
-              ]
-            }
+            // style={
+            //   [
+            //     styles.buttonStyle,
+            //     theme ? null : darkTheme.buttonContainer,
+            //   ]
+            // }
           >
             <p
             // style={theme ? null : darkTheme.text}
@@ -212,7 +212,6 @@ const QuestionItem = ({
           size={25}
           color={theme ? "black" : "white"}
         /> */}
-        Circle here
         {quizName}
       </p>
       {isEnd ? renderQuizEnd() : renderQuiz()}
