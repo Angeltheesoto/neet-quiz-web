@@ -1,0 +1,45 @@
+nav {
+  height: 5rem;
+  display: flex;
+  border: 1px solid red;
+}
+
+div {
+  width: auto;
+  height: auto;
+}
+
+p {
+  font-size: 1rem;
+  margin-bottom: 0 !important;
+}
+
+/* questions in quiz */
+h1 {
+  font-size: 4rem;
+}
+
+/* question choices */
+h2 {
+  font-size: 2rem;
+}
+
+/* question title */
+h3 {
+  font-size: 1.5rem;
+  background-color: lightgray;
+  padding: 10px;
+}
+
+/* back and next buttons */
+h4 {
+  background-color: lightgrey;
+  padding: 10px;
+  border-radius: 15px;
+  width: fit-content;
+}
+
+h4:hover {
+  cursor: pointer;
+  background-color: gray;
+}

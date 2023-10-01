@@ -52,17 +52,18 @@ const QuestionItem = ({
   const renderQuiz = () => {
     return (
       <>
-        <p
+        <h1
         //  style={[styles.titleText, theme ? lightTheme.text : darkTheme.text]}
         >
           {question}
-        </p>
+        </h1>
         <p
-        // style={
-        //   [
-        //      theme ? lightTheme.text : darkTheme.text,
-        //   ]
-        // }
+          // style={
+          //   [
+          //      theme ? lightTheme.text : darkTheme.text,
+          //   ]
+          // }
+          className="questionitem-counter"
         >
           {idCount + 1} / {lengthOfQuiz}
         </p>
@@ -70,33 +71,31 @@ const QuestionItem = ({
           {options?.map((option, index) => (
             <div
               key={index}
-              // style={
-              //   [
-              //      styles.questionItem,
-              //      currentQuiz[questionNum].isReveal
-              //        ? index == correctAnswer
-              //          ? styles.correct
-              //          : styles.incorrect
-              //        : null,
-              //   ]
-              // }
+              className="questionitem-choice-container"
+              style={{
+                backgroundColor: currentQuiz[questionNum].isReveal
+                  ? index == correctAnswer
+                    ? "limegreen"
+                    : "tomato"
+                  : null,
+              }}
               onClick={() => handleCheck(index)}
             >
-              <p key={index}>{option}</p>
+              <h2 key={index}>{option}</h2>
             </div>
           ))}
         </div>
         {currentQuiz[questionNum]?.isReveal ? (
           <p
-          // style={[styles.answerText, theme ? null : darkTheme.text]}
+            // style={[styles.answerText, theme ? null : darkTheme.text]}
+            className="questionitem-wrongright"
           >
             {currentQuiz[questionNum]?.isCorrect ? "Correct!" : "Wrong!"}
           </p>
         ) : null}
-        <div>
+        <div className="questionitem-fwdbck-container">
           <div
             onClick={handleGoBack}
-            // onClick={handleGenreSelect(genre)}
             // style={
             //   [
             //     styles.buttonStyle,
@@ -104,11 +103,12 @@ const QuestionItem = ({
             //   ]
             // }
           >
-            <p
-            // style={theme ? null : darkTheme.text}
+            <h4
+              // style={theme ? null : darkTheme.text}
+              style={{ marginRight: "10px" }}
             >
               {idCount == 0 ? "Exit Quiz" : "Back"}
-            </p>
+            </h4>
           </div>
           <div
             onClick={handleNext}
@@ -119,11 +119,11 @@ const QuestionItem = ({
               ]
             }
           >
-            <p
+            <h4
             // style={theme ? null : darkTheme.text}
             >
               {idCount == lengthOfQuiz - 1 ? "Finish" : "Next"}
-            </p>
+            </h4>
           </div>
         </div>
       </>
@@ -133,15 +133,15 @@ const QuestionItem = ({
   // !Displays quiz total
   const renderQuizEnd = () => {
     return (
-      <div>
-        <p
+      <div className="questionitem-quizend-container">
+        <h1
         // style={[styles.titleText, theme ? null : darkTheme.text]}
         >
           You Finished!
-        </p>
-        <p
+        </h1>
+        <h2
         // style={[styles.titleText, theme ? null : darkTheme.text]}
-        >{`Total: ${totalCorrect} / ${lengthOfQuiz}`}</p>
+        >{`Total: ${totalCorrect} / ${lengthOfQuiz}`}</h2>
         <div
         // style={[
         //   styles.percentageContainer,
@@ -150,23 +150,24 @@ const QuestionItem = ({
         //     : { borderColor: "red" },
         // ]}
         >
-          <p
+          <h1
           // style={[styles.percentageText, theme ? null : darkTheme.text]}
           >
             {`${((totalCorrect / lengthOfQuiz) * 100).toFixed(0)}%`}
-          </p>
+          </h1>
         </div>
-        <div>
-          <p
+        <div className="questionitem-endquiz-btn-container">
+          <h4
             onClick={() => handleGenreSelect(genre)}
             // style={[
             //   styles.buttonStyle,
             //   theme ? null : darkTheme.buttonContainer,
             // ]}
+            style={{ marginRight: "10px" }}
           >
             Exit
-          </p>
-          <p
+          </h4>
+          <h4
             onClick={() => {
               const initialState = {
                 selectedOption: null,
@@ -187,15 +188,11 @@ const QuestionItem = ({
             // ]}
           >
             Retake
-          </p>
+          </h4>
         </div>
       </div>
     );
   };
-
-  // useEffect(() => {
-  //   console.log(handleGoBack);
-  // }, []);
 
   return (
     <div
@@ -204,7 +201,7 @@ const QuestionItem = ({
     //   theme ? lightTheme.background : darkTheme.background,
     // ]}
     >
-      <p
+      <h3
       // style={[styles.quizName, theme ? null : darkTheme.buttonContainer]}
       >
         {/* <FontAwesome5
@@ -213,7 +210,7 @@ const QuestionItem = ({
           color={theme ? "black" : "white"}
         /> */}
         {quizName}
-      </p>
+      </h3>
       {isEnd ? renderQuizEnd() : renderQuiz()}
     </div>
   );

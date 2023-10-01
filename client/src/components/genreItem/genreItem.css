@@ -1,9 +1,19 @@
 .genreitem-container {
-  border: 2px solid red;
-  margin: 0 2px;
-  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 5px;
+  padding: 20px;
+  background-color: #eee;
+  border-radius: 15px;
 }
 
 .genreitem-container:hover {
   cursor: pointer;
+  background-color: lightgray;
+}
+
+.genreitem-container p {
+  font-size: 1.1rem;
+  font-weight: 600;
 }

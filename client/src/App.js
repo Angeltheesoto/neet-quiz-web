@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import MyContext from "./context/MyContext";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 // Pages
 import Home from "./pages/home/Home";
 import Saved from "./pages/Saved/Saved";
 import Settings from "./pages/settings/Settings";
+import MyNav from "./components/mynav/MyNav";
 
 function App() {
   const [fetchLsData, setFetchLsData] = useState(false);
@@ -47,6 +49,7 @@ function App() {
   return (
     <MyContext.Provider value={{ theme, toggleTheme }}>
       <div className="App">
+        <MyNav />
         {
           <BrowserRouter>
             <Routes>

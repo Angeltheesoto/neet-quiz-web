@@ -5,7 +5,7 @@ import data from "../../utils/data";
 // !COME BACK!
 // import { darkTheme, lightTheme } from "../styles/globalStyles";
 import "../../css/lightTheme.css";
-import "../../css/darkTheme.css";
+// import "../../css/darkTheme.css";
 
 // components
 import ListItem from "../../components/listItem/ListItem";

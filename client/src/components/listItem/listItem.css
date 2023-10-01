@@ -8,9 +8,11 @@
   cursor: pointer;
 }
 
+.listitem-container p {
+  font-size: 2rem;
+}
+
 .title-bookmark-container {
-  background-color: gray;
-  padding: 10px;
   border: 0px;
   border-radius: 10px;
   z-index: 9999;

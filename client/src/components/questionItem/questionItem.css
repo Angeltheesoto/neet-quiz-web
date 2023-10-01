@@ -1,0 +1,50 @@
+.questionitem-choice-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: #eee;
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+
+.questionitem-choice-container:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}
+
+.questionitem-fwdbck-container {
+  margin: 2rem 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.questionitem-counter {
+  font-size: 1.3rem;
+  margin: 0rem 0 1rem 0 !important;
+  padding: 10px;
+  background-color: lightgray;
+  width: fit-content;
+}
+
+.questionitem-wrongright {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+}
+
+.questionitem-quizend-container {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem 0;
+}
+
+.questionitem-endquiz-btn-container {
+  display: flex;
+  flex-direction: row;
+}
