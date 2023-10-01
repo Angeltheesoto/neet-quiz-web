@@ -193,6 +193,7 @@ const Home = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
     if (idCount === 0) {
       // handleGenreSelect();
       setSelectedQuizQuestions((prev) => (prev = null));
+      setSelectedQuiz((prev) => (prev = null));
     } else {
       setIdCount((prev) => (prev > 0 ? (prev -= 1) : prev));
       // console.log(idCount);
@@ -236,17 +237,17 @@ const Home = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
   // console.log(savedQuiz);
 
   // !TESTS________________>
-  useEffect(() => {
-    console.log(`Genre changed: ${genre}`);
-  }, [genre]);
+  // useEffect(() => {
+  //   console.log(`Genre changed: ${genre}`);
+  // }, [genre]);
 
-  useEffect(() => {
-    console.log(`Quiz changed: ${selectedQuiz}`);
-  }, [selectedQuiz]);
+  // useEffect(() => {
+  //   console.log(`Quiz changed: ${selectedQuiz}`);
+  // }, [selectedQuiz]);
 
-  useEffect(() => {
-    console.log(`Quiz Questions changed: ${selectedQuizQuestions}`);
-  }, [selectedQuizQuestions]);
+  // useEffect(() => {
+  //   console.log(`Quiz Questions changed: ${selectedQuizQuestions}`);
+  // }, [selectedQuizQuestions]);
   // !TESTS________________>
 
   return (

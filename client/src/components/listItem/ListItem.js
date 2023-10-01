@@ -1,12 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import "./listItem.css";
+// import { darkTheme } from "../styles/globalStyles";
 import MyContext from "../../context/MyContext";
 
 const ListItem = ({ title, genre }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const { theme } = useContext(MyContext);
 
-  // Function to toggle the bookmark status
-  const toggleBookmark = () => {
+  // !Function to toggle the bookmark status
+  const toggleBookmark = (event) => {
     const existingData =
       JSON.parse(localStorage.getItem("bookmarkedItems")) || {};
     const genreItems = existingData[genre] || [];
@@ -21,9 +23,10 @@ const ListItem = ({ title, genre }) => {
 
     localStorage.setItem("bookmarkedItems", JSON.stringify(existingData));
     setIsBookmarked(!isBookmarked); // Update the bookmarked state
+    event.stopPropagation(); // This prevents the toggleBookmark from triggering the parent onClick.
   };
 
-  // Function to initialize the bookmarked status
+  // !Function to initialize the bookmarked status
   const initializeBookmarkStatus = () => {
     const existingData =
       JSON.parse(localStorage.getItem("bookmarkedItems")) || {};
@@ -36,12 +39,14 @@ const ListItem = ({ title, genre }) => {
   }, [genre, title]);
 
   return (
-    <div className="listitem-container">
-      <p>{title}</p>
+    <>
+      <div className="listitem-container">
+        <p>{title}</p>
+      </div>
       <div onClick={toggleBookmark} className="title-bookmark-container">
         {isBookmarked ? <p>Bookmarked</p> : <p>Not Bookmarked</p>}
       </div>
-    </div>
+    </>
   );
 };
 
