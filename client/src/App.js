@@ -9,6 +9,7 @@ import Home from "./pages/home/Home";
 import Saved from "./pages/Saved/Saved";
 import Settings from "./pages/settings/Settings";
 import MyNav from "./components/mynav/MyNav";
+import Container from "react-bootstrap/esm/Container";
 
 function App() {
   const [fetchLsData, setFetchLsData] = useState(false);
@@ -49,39 +50,41 @@ function App() {
   return (
     <MyContext.Provider value={{ theme, toggleTheme }}>
       <div className="App">
-        <MyNav />
-        {
-          <BrowserRouter>
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <Home
-                    initializeLocalStorage={initializeLocalStorage}
-                    fetchLsData={fetchLsData}
-                    setFetchLsData={setFetchLsData}
-                  />
-                }
-              />
-              <Route
-                path="/saved"
-                element={
-                  <Saved initializeLocalStorage={initializeLocalStorage} />
-                }
-              />
-              <Route
-                path="/settings"
-                element={
-                  <Settings
-                    initializeLocalStorage={initializeLocalStorage}
-                    fetchLsData={fetchLsData}
-                    setFetchLsData={setFetchLsData}
-                  />
-                }
-              />
-            </Routes>
-          </BrowserRouter>
-        }
+        <Container>
+          <MyNav />
+          {
+            <BrowserRouter>
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <Home
+                      initializeLocalStorage={initializeLocalStorage}
+                      fetchLsData={fetchLsData}
+                      setFetchLsData={setFetchLsData}
+                    />
+                  }
+                />
+                <Route
+                  path="/saved"
+                  element={
+                    <Saved initializeLocalStorage={initializeLocalStorage} />
+                  }
+                />
+                <Route
+                  path="/settings"
+                  element={
+                    <Settings
+                      initializeLocalStorage={initializeLocalStorage}
+                      fetchLsData={fetchLsData}
+                      setFetchLsData={setFetchLsData}
+                    />
+                  }
+                />
+              </Routes>
+            </BrowserRouter>
+          }
+        </Container>
       </div>
     </MyContext.Provider>
   );

@@ -143,12 +143,10 @@ const QuestionItem = ({
         // style={[styles.titleText, theme ? null : darkTheme.text]}
         >{`Total: ${totalCorrect} / ${lengthOfQuiz}`}</h2>
         <div
-        // style={[
-        //   styles.percentageContainer,
-        //   totalCorrect > lengthOfQuiz / 2
-        //     ? { borderColor: "green" }
-        //     : { borderColor: "red" },
-        // ]}
+          className="questionitem-percent-contaienr"
+          style={{
+            borderColor: totalCorrect > lengthOfQuiz / 2 ? "green" : "red",
+          }}
         >
           <h1
           // style={[styles.percentageText, theme ? null : darkTheme.text]}
@@ -204,11 +202,6 @@ const QuestionItem = ({
       <h3
       // style={[styles.quizName, theme ? null : darkTheme.buttonContainer]}
       >
-        {/* <FontAwesome5
-          name="question-circle"
-          size={25}
-          color={theme ? "black" : "white"}
-        /> */}
         {quizName}
       </h3>
       {isEnd ? renderQuizEnd() : renderQuiz()}

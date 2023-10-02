@@ -14,3 +14,11 @@
   background-color: white;
   color: black;
 }
+
+.navbar-brand {
+  font-size: 2rem;
+}
+
+.nav-link {
+  font-size: 1.5rem;
+}

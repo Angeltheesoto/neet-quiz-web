@@ -1,7 +1,8 @@
 nav {
   height: 5rem;
   display: flex;
-  border: 1px solid red;
+  border-bottom: 3px solid gray;
+  margin-bottom: 1rem;
 }
 
 div {
@@ -42,4 +43,24 @@ h4 {
 h4:hover {
   cursor: pointer;
   background-color: gray;
+}
+
+/* settings title */
+h5 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+/* settings text */
+h6 {
+  font-size: 1.5rem;
+}
+
+.warning {
+  background-color: tomato;
+  padding: 10px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  border-radius: 10px;
 }

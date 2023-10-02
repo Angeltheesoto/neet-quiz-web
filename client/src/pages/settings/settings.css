@@ -1,0 +1,28 @@
+.settings-delete-ls {
+  padding: 1rem;
+  border: 1px solid red;
+  margin: 2rem 0 0 0;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.settings-delete-ls:hover {
+  cursor: pointer;
+  background-color: tomato;
+  color: white;
+}
+
+.settings-ld-mode {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 8rem;
+  margin-bottom: 10px;
+  padding: 1rem;
+}
+
+.settings-ld-mode:hover {
+  cursor: pointer;
+}

@@ -1,0 +1,21 @@
+.settingitem-container {
+  align-items: center;
+  margin: 10px;
+  background-color: #eee;
+  border-radius: 15px;
+  padding: 2rem;
+}
+
+.settingitem-inner-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.settingitem-inner-container:hover {
+  cursor: pointer;
+}
+
+.settingitem-children-container {
+  padding: 1rem 0 0 0;
+}

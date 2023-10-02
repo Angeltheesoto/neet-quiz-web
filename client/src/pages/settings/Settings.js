@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import MyContext from "../../context/MyContext";
+import "./settings.css";
 // import { lightTheme, darkTheme } from "../styles/globalStyles";
 
 // components
 import SettingItem from "../../components/settingItem/SettingItem";
+import { Lightbulb, LightbulbFill } from "react-bootstrap-icons";
 
 const Settings = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
   const [isLight, setIsLight] = useState(true);
@@ -28,36 +30,34 @@ const Settings = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
   const onPressRadioButton = () => {
     setIsLight((prev) => !prev);
     toggleTheme(!isLight);
+    console.log(theme);
+    console.log(isLight);
   };
 
   const themeContent = () => {
     return (
       <div>
-        <div onClick={onPressRadioButton} disabled={isLight}>
-          <div>
-            {/* <Ionicons
-              name={isLight ? "radio-button-on" : "radio-button-off"}
-              size={24}
-              color="gray"
-            /> */}
-            <img src="#" alt="Temp image" />
-            {/* <Text style={isLight ? lightTheme.text : darkTheme.text}> */}
-            <p>Light</p>
-            {/* </Text> */}
-          </div>
+        <div
+          className="settings-ld-mode"
+          onClick={isLight ? onPressRadioButton : null}
+        >
+          {isLight ? (
+            <Lightbulb color="black" size={30} />
+          ) : (
+            <LightbulbFill color="black" size={30} />
+          )}
+          <h6>Light</h6>
         </div>
-        <div onClick={onPressRadioButton} disabled={!isLight}>
-          <div>
-            {/* <Ionicons
-              name={isLight ? "radio-button-off" : "radio-button-on"}
-              size={24}
-              color="gray"
-            /> */}
-            <img src="#" alt="Temp image" />
-            {/* <Text style={isLight ? lightTheme.text : darkTheme.text}> */}
-            <p>Dark</p>
-            {/* </Text> */}
-          </div>
+        <div
+          className="settings-ld-mode"
+          onClick={!isLight ? onPressRadioButton : null}
+        >
+          {isLight ? (
+            <LightbulbFill color="black" size={30} />
+          ) : (
+            <Lightbulb color="black" size={30} />
+          )}
+          <h6>Dark</h6>
         </div>
       </div>
     );
@@ -69,18 +69,19 @@ const Settings = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
       <>
         <div>
           {/* <Text style={isLight ? lightTheme.text : darkTheme.text}> */}
-          <p>Clicking this button will remove all saved quizzes.</p>
+          <span className="warning">
+            Clicking this button will remove all saved quizzes.
+          </span>
           {/* </Text> */}
         </div>
         <div
           // style={styles.clearButton}
+          className="settings-delete-ls"
           onClick={() => {
             clearLocalStorageItem("bookmarkedItems");
           }}
         >
-          {/* <Text style={styles.clearText}> */}
-          <p>Delete all saved quizzes</p>
-          {/* </Text> */}
+          Delete all saved quizzes
         </div>
         {showDelSavedMessage && (
           // <Text
@@ -125,13 +126,13 @@ const Settings = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
     return (
       <div>
         {/* <Text style={isLight ? lightTheme.text : darkTheme.text}> */}
-        <p>
+        <h6>
           NEETQuiz is a quiz app meticulously crafted by developers to empower
           software engineers and developers in honing their skills and
           knowledge. Geared towards improving your technical interview skills,
           this app serves as an indispensable tool for aspirants seeking success
           in the ever-evolving world of software development.
-        </p>
+        </h6>
         {/* </Text> */}
       </div>
     );

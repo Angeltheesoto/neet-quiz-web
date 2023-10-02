@@ -128,17 +128,7 @@ const Home = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
         ));
       } else if (currentRouteName === "/saved") {
         if (savedQuizTitles() === undefined) {
-          return (
-            <p
-            // !ADD STYLES
-            // style={[
-            //   styles.savedQuizText,
-            //   theme ? null : darkTheme.background,
-            // ]}
-            >
-              No saved quizzes
-            </p>
-          );
+          return <p className="home-no-saved-quizzes">No saved quizzes</p>;
         } else {
           return savedQuizTitles().map((item) => (
             <div
@@ -235,20 +225,6 @@ const Home = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
     fetchLocalStorageData();
   }, [savedQuiz, fetchLsData]);
   // console.log(savedQuiz);
-
-  // !TESTS________________>
-  // useEffect(() => {
-  //   console.log(`Genre changed: ${genre}`);
-  // }, [genre]);
-
-  // useEffect(() => {
-  //   console.log(`Quiz changed: ${selectedQuiz}`);
-  // }, [selectedQuiz]);
-
-  // useEffect(() => {
-  //   console.log(`Quiz Questions changed: ${selectedQuizQuestions}`);
-  // }, [selectedQuizQuestions]);
-  // !TESTS________________>
 
   return (
     <>
