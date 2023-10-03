@@ -1,11 +1,9 @@
 import React, { useContext } from "react";
 import "./genreItem.css";
-// import { lightTheme, darkTheme } from "../styles/globalStyles";
-import MyContext from "../../context/MyContext";
+import { useTheme } from "../../context/ThemeContext";
 
 const GenreItem = ({ item, index, handleGenreSelect, genre }) => {
-  const { theme } = useContext(MyContext);
-
+  const { theme } = useTheme();
   // console.log(`GenreItem: ${item} ${index} ${genre} ${handleGenreSelect}`);
 
   return (
@@ -13,33 +11,10 @@ const GenreItem = ({ item, index, handleGenreSelect, genre }) => {
       <div
         onClick={() => handleGenreSelect(item)}
         className="genreitem-container"
-        // style={[
-        //   styles.genreContainer,
-        //   theme ? lightTheme.background : darkTheme.background,
-        // ]}
+        data-theme={theme ? null : "dark"}
       >
-        <div
-        // style={
-        //   genre === item
-        //     ? theme
-        //       ? styles.genreItemActive
-        //       : darkTheme.genreItemActive
-        //     : theme
-        //     ? styles.genreItem
-        //     : darkTheme.genreItem
-        // }
-        >
-          <p
-          // style={
-          //   genre === item
-          //     ? styles.genreTextActive
-          //     : theme
-          //     ? styles.genreText
-          //     : darkTheme.genreText
-          // }
-          >
-            {item}
-          </p>
+        <div>
+          <p>{item}</p>
         </div>
       </div>
     </>

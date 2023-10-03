@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.css";
-import MyContext from "./context/MyContext";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useTheme } from "./context/ThemeContext";
+import "./App.css";
 
 // Pages
 import Home from "./pages/home/Home";
@@ -13,11 +13,8 @@ import Container from "react-bootstrap/esm/Container";
 
 function App() {
   const [fetchLsData, setFetchLsData] = useState(false);
-  const [theme, setTheme] = useState(true);
 
-  const toggleTheme = (isLight) => {
-    setTheme(isLight);
-  };
+  const { theme, setTheme, toggleTheme } = useTheme();
 
   // !Retrieves saved quizzes and theme from LS
   const initializeLocalStorage = async () => {
@@ -48,45 +45,43 @@ function App() {
   }, []);
 
   return (
-    <MyContext.Provider value={{ theme, toggleTheme }}>
-      <div className="App">
-        <Container>
-          <MyNav />
-          {
-            <BrowserRouter>
-              <Routes>
-                <Route
-                  path="/"
-                  element={
-                    <Home
-                      initializeLocalStorage={initializeLocalStorage}
-                      fetchLsData={fetchLsData}
-                      setFetchLsData={setFetchLsData}
-                    />
-                  }
-                />
-                <Route
-                  path="/saved"
-                  element={
-                    <Saved initializeLocalStorage={initializeLocalStorage} />
-                  }
-                />
-                <Route
-                  path="/settings"
-                  element={
-                    <Settings
-                      initializeLocalStorage={initializeLocalStorage}
-                      fetchLsData={fetchLsData}
-                      setFetchLsData={setFetchLsData}
-                    />
-                  }
-                />
-              </Routes>
-            </BrowserRouter>
-          }
-        </Container>
-      </div>
-    </MyContext.Provider>
+    <div className="App" data-theme={theme ? "light" : "dark"}>
+      <Container>
+        <MyNav />
+        {
+          <BrowserRouter>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Home
+                    initializeLocalStorage={initializeLocalStorage}
+                    fetchLsData={fetchLsData}
+                    setFetchLsData={setFetchLsData}
+                  />
+                }
+              />
+              <Route
+                path="/saved"
+                element={
+                  <Saved initializeLocalStorage={initializeLocalStorage} />
+                }
+              />
+              <Route
+                path="/settings"
+                element={
+                  <Settings
+                    initializeLocalStorage={initializeLocalStorage}
+                    fetchLsData={fetchLsData}
+                    setFetchLsData={setFetchLsData}
+                  />
+                }
+              />
+            </Routes>
+          </BrowserRouter>
+        }
+      </Container>
+    </div>
   );
 }
 

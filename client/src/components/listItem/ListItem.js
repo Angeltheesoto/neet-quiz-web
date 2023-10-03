@@ -1,12 +1,11 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import "./listItem.css";
-// import { darkTheme } from "../styles/globalStyles";
-import MyContext from "../../context/MyContext";
+import { useTheme } from "../../context/ThemeContext";
 import { Bookmark, BookmarkFill } from "react-bootstrap-icons";
 
 const ListItem = ({ title, genre }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
-  const { theme } = useContext(MyContext);
+  const { theme } = useTheme();
 
   // !Function to toggle the bookmark status
   const toggleBookmark = (event) => {
@@ -46,9 +45,9 @@ const ListItem = ({ title, genre }) => {
       </div>
       <div onClick={toggleBookmark} className="title-bookmark-container">
         {isBookmarked ? (
-          <BookmarkFill color="black" size={40} />
+          <BookmarkFill color={!theme ? "white" : "black"} size={40} />
         ) : (
-          <Bookmark color="black" size={40} />
+          <Bookmark color={!theme ? "white" : "black"} size={40} />
         )}
       </div>
     </>

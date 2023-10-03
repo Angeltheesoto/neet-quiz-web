@@ -1,39 +1,27 @@
-import React, { useContext, useState } from "react";
-// import { lightTheme, darkTheme } from "../styles/globalStyles";
+import React, { useState } from "react";
 import "./settingItem.css";
-import MyContext from "../../context/MyContext";
+import { useTheme } from "../../context/ThemeContext";
 import { CaretDownFill, CaretUpFill } from "react-bootstrap-icons";
 
 // !Add a toggle arrow up/down to display content for the settings.
 
 const SettingItem = ({ title, children, isLast }) => {
   const [show, setShow] = useState(false);
-  const { theme } = useContext(MyContext);
-  // const containerStyle = isLast
-  //   ? [styles.container, styles.lastItemContainer]
-  //   : styles.container;
+  const { theme, setTheme, toggleTheme } = useTheme();
+
   const handleClick = () => {
     setShow((prev) => !prev);
   };
 
   return (
-    <div className="settingitem-container">
+    <div className="settingitem-container" data-theme={theme ? null : "dark"}>
       <div onClick={handleClick}>
         <div className="settingitem-inner-container">
-          <h5
-          // style={[styles.title, theme ? lightTheme.text : darkTheme.text]}
-          >
-            {title}
-          </h5>
-          {/* <AntDesign
-            name={show ? "caretup" : "caretdown"}
-            size={24}
-            color={theme ? "black" : "white"}
-          /> */}
+          <h5>{title}</h5>
           {show ? (
-            <CaretUpFill color="black" size={50} />
+            <CaretUpFill color={!theme ? "white" : "black"} size={50} />
           ) : (
-            <CaretDownFill color="black" size={50} />
+            <CaretDownFill color={!theme ? "white" : "black"} size={50} />
           )}
         </div>
       </div>

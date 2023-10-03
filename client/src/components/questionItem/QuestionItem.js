@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
-// import { darkTheme, lightTheme } from "../styles/globalStyles";
+import React, { useState } from "react";
 import "./questionItem.css";
-import MyContext from "../../context/MyContext";
+import { useTheme } from "../../context/ThemeContext";
 
 const QuestionItem = ({
   question,
@@ -30,7 +29,7 @@ const QuestionItem = ({
   });
   // *console.log(currentQuiz);
 
-  const { theme } = useContext(MyContext);
+  const { theme } = useTheme();
 
   // !Keeps track of quiz progress.
   const handleCheck = (index) => {
@@ -52,19 +51,8 @@ const QuestionItem = ({
   const renderQuiz = () => {
     return (
       <>
-        <h1
-        //  style={[styles.titleText, theme ? lightTheme.text : darkTheme.text]}
-        >
-          {question}
-        </h1>
-        <p
-          // style={
-          //   [
-          //      theme ? lightTheme.text : darkTheme.text,
-          //   ]
-          // }
-          className="questionitem-counter"
-        >
+        <h1>{question}</h1>
+        <p className="questionitem-counter">
           {idCount + 1} / {lengthOfQuiz}
         </p>
         <div>
@@ -86,44 +74,18 @@ const QuestionItem = ({
           ))}
         </div>
         {currentQuiz[questionNum]?.isReveal ? (
-          <p
-            // style={[styles.answerText, theme ? null : darkTheme.text]}
-            className="questionitem-wrongright"
-          >
+          <p className="questionitem-wrongright">
             {currentQuiz[questionNum]?.isCorrect ? "Correct!" : "Wrong!"}
           </p>
         ) : null}
         <div className="questionitem-fwdbck-container">
-          <div
-            onClick={handleGoBack}
-            // style={
-            //   [
-            //     styles.buttonStyle,
-            //     theme ? null : darkTheme.buttonContainer,
-            //   ]
-            // }
-          >
-            <h4
-              // style={theme ? null : darkTheme.text}
-              style={{ marginRight: "10px" }}
-            >
+          <div onClick={handleGoBack}>
+            <h4 style={{ marginRight: "10px" }}>
               {idCount == 0 ? "Exit Quiz" : "Back"}
             </h4>
           </div>
-          <div
-            onClick={handleNext}
-            style={
-              [
-                // styles.buttonStyle,
-                // theme ? null : darkTheme.buttonContainer,
-              ]
-            }
-          >
-            <h4
-            // style={theme ? null : darkTheme.text}
-            >
-              {idCount == lengthOfQuiz - 1 ? "Finish" : "Next"}
-            </h4>
+          <div onClick={handleNext}>
+            <h4>{idCount == lengthOfQuiz - 1 ? "Finish" : "Next"}</h4>
           </div>
         </div>
       </>
@@ -134,33 +96,19 @@ const QuestionItem = ({
   const renderQuizEnd = () => {
     return (
       <div className="questionitem-quizend-container">
-        <h1
-        // style={[styles.titleText, theme ? null : darkTheme.text]}
-        >
-          You Finished!
-        </h1>
-        <h2
-        // style={[styles.titleText, theme ? null : darkTheme.text]}
-        >{`Total: ${totalCorrect} / ${lengthOfQuiz}`}</h2>
+        <h1>You Finished!</h1>
+        <h2>{`Total: ${totalCorrect} / ${lengthOfQuiz}`}</h2>
         <div
           className="questionitem-percent-contaienr"
           style={{
             borderColor: totalCorrect > lengthOfQuiz / 2 ? "green" : "red",
           }}
         >
-          <h1
-          // style={[styles.percentageText, theme ? null : darkTheme.text]}
-          >
-            {`${((totalCorrect / lengthOfQuiz) * 100).toFixed(0)}%`}
-          </h1>
+          <h1>{`${((totalCorrect / lengthOfQuiz) * 100).toFixed(0)}%`}</h1>
         </div>
         <div className="questionitem-endquiz-btn-container">
           <h4
             onClick={() => handleGenreSelect(genre)}
-            // style={[
-            //   styles.buttonStyle,
-            //   theme ? null : darkTheme.buttonContainer,
-            // ]}
             style={{ marginRight: "10px" }}
           >
             Exit
@@ -180,10 +128,6 @@ const QuestionItem = ({
               );
               setTotalCorrect(0);
             }}
-            // style={[
-            //   styles.buttonStyle,
-            //   theme ? null : darkTheme.buttonContainer,
-            // ]}
           >
             Retake
           </h4>
@@ -193,17 +137,8 @@ const QuestionItem = ({
   };
 
   return (
-    <div
-    // style={[
-    //   styles.container,
-    //   theme ? lightTheme.background : darkTheme.background,
-    // ]}
-    >
-      <h3
-      // style={[styles.quizName, theme ? null : darkTheme.buttonContainer]}
-      >
-        {quizName}
-      </h3>
+    <div>
+      <h3>{quizName}</h3>
       {isEnd ? renderQuizEnd() : renderQuiz()}
     </div>
   );

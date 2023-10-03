@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./home.css";
 import data from "../../utils/data";
-// import MyContext from "../../context/MyContext";
-// !COME BACK!
-// import { darkTheme, lightTheme } from "../styles/globalStyles";
-import "../../css/lightTheme.css";
-// import "../../css/darkTheme.css";
 
 // components
 import ListItem from "../../components/listItem/ListItem";
 import GenreItem from "../../components/genreItem/GenreItem";
 import QuestionItem from "../../components/questionItem/QuestionItem";
 import { useLocation } from "react-router-dom";
+import { useTheme } from "../../context/ThemeContext";
 
 const Home = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
   const [genre, setGenre] = useState("javascript");
@@ -29,7 +25,7 @@ const Home = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
   const currentRouteName = location.pathname;
   // console.log(currentRouteName);
 
-  // const { theme } = useContext(MyContext);
+  const { theme } = useTheme();
 
   // !Resets everything when you choose a new genre
   const handleGenreSelect = (gen) => {
@@ -122,6 +118,7 @@ const Home = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
           <div
             onClick={() => handleQuizSelect(item)}
             className="home-quizlist-container"
+            data-theme={theme ? null : "dark"}
           >
             <ListItem title={item} genre={genre} />
           </div>
@@ -134,6 +131,7 @@ const Home = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
             <div
               onClick={() => handleQuizSelect(item)}
               className="home-quizlist-container"
+              data-theme={theme ? null : "dark"}
             >
               <ListItem title={item} genre={genre} />
             </div>
@@ -181,12 +179,10 @@ const Home = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
   // !Goes to previous question. For [renderQuizQuestions].
   const handleGoBack = () => {
     if (idCount === 0) {
-      // handleGenreSelect();
       setSelectedQuizQuestions((prev) => (prev = null));
       setSelectedQuiz((prev) => (prev = null));
     } else {
       setIdCount((prev) => (prev > 0 ? (prev -= 1) : prev));
-      // console.log(idCount);
     }
   };
 

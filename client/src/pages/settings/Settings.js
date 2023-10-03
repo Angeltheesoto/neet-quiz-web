@@ -1,15 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
-import MyContext from "../../context/MyContext";
+import React, { useEffect, useState } from "react";
+import { useTheme } from "../../context/ThemeContext";
 import "./settings.css";
-// import { lightTheme, darkTheme } from "../styles/globalStyles";
 
 // components
 import SettingItem from "../../components/settingItem/SettingItem";
 import { Lightbulb, LightbulbFill } from "react-bootstrap-icons";
 
 const Settings = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
-  const [isLight, setIsLight] = useState(true);
-  const { theme, toggleTheme } = useContext(MyContext);
+  const [isLight, setIsLight] = useState(null);
+  const { theme, toggleTheme } = useTheme();
   const [bookmarkedItems, setBookmarkedItems] = useState(null);
   const [delSavedMessage, setDelSavedMessage] = useState(null);
   const [showDelSavedMessage, setShowDelSavedMessage] = useState(true);
@@ -19,6 +18,7 @@ const Settings = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
       try {
         const localBookmark = await localStorage.getItem("bookmarkedItems");
         setBookmarkedItems(localBookmark);
+        setIsLight(theme);
       } catch (error) {
         console.log("Error fetching bookmarked items:", error);
       }
@@ -30,32 +30,32 @@ const Settings = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
   const onPressRadioButton = () => {
     setIsLight((prev) => !prev);
     toggleTheme(!isLight);
-    console.log(theme);
-    console.log(isLight);
   };
+  // console.log(` Settings: ${isLight}`);
+  // console.log(` Settings: ${theme}`);
 
   const themeContent = () => {
     return (
       <div>
         <div
           className="settings-ld-mode"
-          onClick={isLight ? onPressRadioButton : null}
+          onClick={!isLight ? onPressRadioButton : null}
         >
           {isLight ? (
-            <Lightbulb color="black" size={30} />
+            <LightbulbFill color={!theme ? "white" : "black"} size={30} />
           ) : (
-            <LightbulbFill color="black" size={30} />
+            <Lightbulb color={!theme ? "white" : "black"} size={30} />
           )}
           <h6>Light</h6>
         </div>
         <div
           className="settings-ld-mode"
-          onClick={!isLight ? onPressRadioButton : null}
+          onClick={!isLight ? null : onPressRadioButton}
         >
           {isLight ? (
-            <LightbulbFill color="black" size={30} />
+            <Lightbulb color={!theme ? "white" : "black"} size={30} />
           ) : (
-            <Lightbulb color="black" size={30} />
+            <LightbulbFill color={!theme ? "white" : "black"} size={30} />
           )}
           <h6>Dark</h6>
         </div>
@@ -68,14 +68,11 @@ const Settings = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
     return (
       <>
         <div>
-          {/* <Text style={isLight ? lightTheme.text : darkTheme.text}> */}
           <span className="warning">
-            Clicking this button will remove all saved quizzes.
+            The button below will remove all saved quizzes.
           </span>
-          {/* </Text> */}
         </div>
         <div
-          // style={styles.clearButton}
           className="settings-delete-ls"
           onClick={() => {
             clearLocalStorageItem("bookmarkedItems");
@@ -83,16 +80,7 @@ const Settings = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
         >
           Delete all saved quizzes
         </div>
-        {showDelSavedMessage && (
-          // <Text
-          //   style={[
-          //     styles.messagePrompt,
-          //     isLight ? lightTheme.text : darkTheme.text,
-          //   ]}
-          // >
-          <p>{delSavedMessage}</p>
-          // </Text>
-        )}
+        {showDelSavedMessage && <p>{delSavedMessage}</p>}
       </>
     );
   };
@@ -125,7 +113,6 @@ const Settings = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
   const aboutContent = () => {
     return (
       <div>
-        {/* <Text style={isLight ? lightTheme.text : darkTheme.text}> */}
         <h6>
           NEETQuiz is a quiz app meticulously crafted by developers to empower
           software engineers and developers in honing their skills and
@@ -133,7 +120,6 @@ const Settings = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
           this app serves as an indispensable tool for aspirants seeking success
           in the ever-evolving world of software development.
         </h6>
-        {/* </Text> */}
       </div>
     );
   };
@@ -159,7 +145,6 @@ const Settings = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
 
   return (
     <div>
-      {/* <View style={isLight ? lightTheme.container : darkTheme.container}> */}
       <div>
         <SettingItem title={"Theme"} children={themeContent()} />
         <SettingItem title={"About"} children={aboutContent()} />
@@ -169,7 +154,6 @@ const Settings = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
           isLast={true}
         />
       </div>
-      {/* </View> */}
     </div>
   );
 };
