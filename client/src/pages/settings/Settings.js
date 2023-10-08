@@ -80,7 +80,9 @@ const Settings = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
         >
           Delete all saved quizzes
         </div>
-        {showDelSavedMessage && <p>{delSavedMessage}</p>}
+        {showDelSavedMessage && delSavedMessage && (
+          <p className="settings-delete-msg">{delSavedMessage}</p>
+        )}
       </>
     );
   };

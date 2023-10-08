@@ -26,3 +26,12 @@
 .settings-ld-mode:hover {
   cursor: pointer;
 }
+
+.settings-delete-msg {
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 2rem;
+  background-color: lime;
+  padding: 1rem;
+  border-radius: 15px;
+}

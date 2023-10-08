@@ -46,15 +46,15 @@ function App() {
 
   return (
     <div className="App" data-theme={theme ? "light" : "dark"}>
-      <Container
-        style={{
-          minHeight: "100vh",
-          backgroundColor: theme ? null : "#1e1e1e",
-        }}
-      >
-        <MyNav />
-        {
-          <BrowserRouter>
+      {
+        <BrowserRouter>
+          <Container
+            style={{
+              minHeight: "100vh",
+              backgroundColor: theme ? null : "#1e1e1e",
+            }}
+          >
+            <MyNav />
             <Routes>
               <Route
                 path="/"
@@ -83,9 +83,9 @@ function App() {
                 }
               />
             </Routes>
-          </BrowserRouter>
-        }
-      </Container>
+          </Container>
+        </BrowserRouter>
+      }
     </div>
   );
 }

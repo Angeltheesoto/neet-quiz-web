@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useTheme } from "../../context/ThemeContext";
+// import { Link as LinkRoute } from "react-router-dom";
 
 const MyNav = () => {
   const { theme } = useTheme();
@@ -17,6 +18,13 @@ const MyNav = () => {
     return (
       <Nav>
         {myPaths.map((path) => (
+          // <LinkRoute
+          //   to={path.url}
+          //   style={theme ? null : { color: "white" }}
+          //   className="rrd-theme"
+          // >
+          //   {path.name}
+          // </LinkRoute>
           <Nav.Link href={path.url} style={theme ? null : { color: "white" }}>
             {path.name}
           </Nav.Link>
