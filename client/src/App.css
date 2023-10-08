@@ -17,15 +17,32 @@
 
 .App {
   width: 100vw;
-  height: 100vh;
+  height: auto;
 }
 
-div[data-theme="light"] {
+div[data-theme="light"],
+h3[data-theme="light"],
+p[data-theme="light"],
+h4[data-theme="light"] {
   background-color: var(--color-one);
   color: var(--color-six);
 }
 
-div[data-theme="dark"] {
+div[data-hover-theme="light"]:hover {
+  cursor: pointer;
+  background-color: var(--color-three);
+}
+
+div[data-theme="dark"],
+h3[data-theme="dark"],
+p[data-theme="dark"],
+h4[data-theme="dark"] {
   background-color: var(--color-six);
   color: var(--color-one);
+}
+
+div[data-hover-theme="dark"]:hover,
+h4[data-hover-theme="dark"]:hover {
+  cursor: pointer;
+  background-color: var(--color-seven);
 }

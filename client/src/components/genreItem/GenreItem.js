@@ -1,4 +1,3 @@
-import React, { useContext } from "react";
 import "./genreItem.css";
 import { useTheme } from "../../context/ThemeContext";
 
@@ -12,6 +11,7 @@ const GenreItem = ({ item, index, handleGenreSelect, genre }) => {
         onClick={() => handleGenreSelect(item)}
         className="genreitem-container"
         data-theme={theme ? null : "dark"}
+        data-hover-theme={theme ? "light" : "dark"}
       >
         <div>
           <p>{item}</p>

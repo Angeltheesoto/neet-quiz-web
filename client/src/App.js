@@ -46,7 +46,12 @@ function App() {
 
   return (
     <div className="App" data-theme={theme ? "light" : "dark"}>
-      <Container>
+      <Container
+        style={{
+          minHeight: "100vh",
+          backgroundColor: theme ? null : "#1e1e1e",
+        }}
+      >
         <MyNav />
         {
           <BrowserRouter>

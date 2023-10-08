@@ -119,6 +119,7 @@ const Home = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
             onClick={() => handleQuizSelect(item)}
             className="home-quizlist-container"
             data-theme={theme ? null : "dark"}
+            data-hover-theme={theme ? "light" : "dark"}
           >
             <ListItem title={item} genre={genre} />
           </div>

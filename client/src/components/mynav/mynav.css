@@ -1,18 +1,5 @@
-.navbar {
-  background-color: white;
-}
-
-.container {
-  background-color: white;
-}
-
-.navbar-collapse {
-  background-color: white;
-}
-
-.navbar-nav {
-  background-color: white;
-  color: black;
+.toggle {
+  background-color: #eee;
 }
 
 .navbar-brand {

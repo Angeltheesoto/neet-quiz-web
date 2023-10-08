@@ -52,7 +52,7 @@ const QuestionItem = ({
     return (
       <>
         <h1>{question}</h1>
-        <p className="questionitem-counter">
+        <p className="questionitem-counter" data-theme={theme ? null : "dark"}>
           {idCount + 1} / {lengthOfQuiz}
         </p>
         <div>
@@ -68,6 +68,8 @@ const QuestionItem = ({
                   : null,
               }}
               onClick={() => handleCheck(index)}
+              data-theme={theme ? null : "dark"}
+              data-hover-theme={theme ? null : "dark"}
             >
               <h2 key={index}>{option}</h2>
             </div>
@@ -79,13 +81,21 @@ const QuestionItem = ({
           </p>
         ) : null}
         <div className="questionitem-fwdbck-container">
-          <div onClick={handleGoBack}>
-            <h4 style={{ marginRight: "10px" }}>
+          <div onClick={handleGoBack} style={{ marginRight: "10px" }}>
+            <h4
+              data-theme={theme ? null : "dark"}
+              data-hover-theme={theme ? null : "dark"}
+            >
               {idCount == 0 ? "Exit Quiz" : "Back"}
             </h4>
           </div>
           <div onClick={handleNext}>
-            <h4>{idCount == lengthOfQuiz - 1 ? "Finish" : "Next"}</h4>
+            <h4
+              data-theme={theme ? null : "dark"}
+              data-hover-theme={theme ? null : "dark"}
+            >
+              {idCount == lengthOfQuiz - 1 ? "Finish" : "Next"}
+            </h4>
           </div>
         </div>
       </>
@@ -110,6 +120,8 @@ const QuestionItem = ({
           <h4
             onClick={() => handleGenreSelect(genre)}
             style={{ marginRight: "10px" }}
+            data-theme={theme ? null : "dark"}
+            data-hover-theme={theme ? null : "dark"}
           >
             Exit
           </h4>
@@ -128,6 +140,8 @@ const QuestionItem = ({
               );
               setTotalCorrect(0);
             }}
+            data-theme={theme ? null : "dark"}
+            data-hover-theme={theme ? null : "dark"}
           >
             Retake
           </h4>
@@ -138,7 +152,7 @@ const QuestionItem = ({
 
   return (
     <div>
-      <h3>{quizName}</h3>
+      <h3 data-theme={theme ? null : "dark"}>{quizName}</h3>
       {isEnd ? renderQuizEnd() : renderQuiz()}
     </div>
   );

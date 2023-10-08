@@ -8,11 +8,6 @@
   border-radius: 15px;
 }
 
-.genreitem-container:hover {
-  cursor: pointer;
-  background-color: lightgray;
-}
-
 .genreitem-container p {
   font-size: 1.1rem;
   font-weight: 600;
