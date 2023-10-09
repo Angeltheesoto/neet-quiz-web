@@ -83,17 +83,6 @@ function App() {
                 }
               />
             </Routes>
-            <amp-ad
-              width="100vw"
-              height="320"
-              type="adsense"
-              data-ad-client="ca-pub-6889638865905659"
-              data-ad-slot="8089700470"
-              data-auto-format="rspv"
-              data-full-width=""
-            >
-              <div overflow=""></div>
-            </amp-ad>
           </Container>
         </BrowserRouter>
       }
