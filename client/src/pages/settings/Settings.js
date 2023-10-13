@@ -5,6 +5,7 @@ import "./settings.css";
 // components
 import SettingItem from "../../components/settingItem/SettingItem";
 import { Lightbulb, LightbulbFill } from "react-bootstrap-icons";
+import { Helmet } from "react-helmet";
 
 const Settings = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
   const [isLight, setIsLight] = useState(null);
@@ -148,6 +149,13 @@ const Settings = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
   return (
     <div>
       <div>
+        <Helmet>
+          <title>Settings</title>
+          <meta
+            name="Settings Page"
+            content="Welcome to the settings page of neet-quiz!"
+          />
+        </Helmet>
         <SettingItem title={"Theme"} children={themeContent()} />
         <SettingItem title={"About"} children={aboutContent()} />
         <SettingItem

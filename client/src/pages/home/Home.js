@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./home.css";
 import data from "../../utils/data";
+import { Helmet } from "react-helmet";
 
 // components
 import ListItem from "../../components/listItem/ListItem";
@@ -226,6 +227,17 @@ const Home = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
   return (
     <>
       <div className="home-genre-container">
+        <Helmet>
+          <title>{currentRouteName == "/" ? "HomePage" : "Saved"}</title>
+          <meta
+            name="description"
+            content={
+              currentRouteName == "/"
+                ? "Welcome to the homepage of neet-quiz! Test your knowledge with our interactive quiz app."
+                : "Access all your saved Quizzes here! Test your knowledge with all your saved quizzes!"
+            }
+          />
+        </Helmet>
         {Object.keys(data.quizes).map((genre, index) => (
           <GenreItem
             item={genre}
@@ -235,20 +247,6 @@ const Home = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
           />
         ))}
       </div>
-      <script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6889638865905659"
-        crossorigin="anonymous"
-      ></script>
-      <ins
-        class="adsbygoogle"
-        style={{ display: "block" }}
-        data-ad-client="ca-pub-6889638865905659"
-        data-ad-slot="5337783740"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      ></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       <div className="home-quizname-container">
         {selectedQuizQuestions ? renderQuizQuestions() : renderQuizList()}
       </div>
