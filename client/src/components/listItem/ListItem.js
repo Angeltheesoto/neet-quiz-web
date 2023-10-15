@@ -38,6 +38,8 @@ const ListItem = ({ title, genre }) => {
     initializeBookmarkStatus(); // Initialize bookmarked status on component mount
   }, [genre, title]);
 
+  const iconSize = window.innerWidth < 900 ? 30 : 40;
+
   return (
     <>
       <div className="listitem-container">
@@ -45,9 +47,9 @@ const ListItem = ({ title, genre }) => {
       </div>
       <div onClick={toggleBookmark} className="title-bookmark-container">
         {isBookmarked ? (
-          <BookmarkFill color={!theme ? "white" : "black"} size={40} />
+          <BookmarkFill color={!theme ? "white" : "black"} size={iconSize} />
         ) : (
-          <Bookmark color={!theme ? "white" : "black"} size={40} />
+          <Bookmark color={!theme ? "white" : "black"} size={iconSize} />
         )}
       </div>
     </>

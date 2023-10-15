@@ -226,7 +226,10 @@ const Home = ({ fetchLsData, setFetchLsData, initializeLocalStorage }) => {
 
   return (
     <>
-      <div className="home-genre-container">
+      <div
+        className="home-genre-container"
+        data-scrollbar-theme={theme ? "light" : "dark"}
+      >
         <Helmet>
           <title>{currentRouteName == "/" ? "HomePage" : "Saved"}</title>
           <meta

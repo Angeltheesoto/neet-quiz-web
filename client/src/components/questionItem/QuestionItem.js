@@ -51,7 +51,7 @@ const QuestionItem = ({
   const renderQuiz = () => {
     return (
       <>
-        <h1>{question}</h1>
+        <h1 className="questionitem-question">{question}</h1>
         <p className="questionitem-counter" data-theme={theme ? null : "dark"}>
           {idCount + 1} / {lengthOfQuiz}
         </p>
@@ -71,7 +71,9 @@ const QuestionItem = ({
               data-theme={theme ? null : "dark"}
               data-hover-theme={theme ? null : "dark"}
             >
-              <h2 key={index}>{option}</h2>
+              <h2 key={index} className="questionitem-choice">
+                {option}
+              </h2>
             </div>
           ))}
         </div>

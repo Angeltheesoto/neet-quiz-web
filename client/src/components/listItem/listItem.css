@@ -17,3 +17,9 @@
   border-radius: 10px;
   z-index: 9999;
 }
+
+@media screen and (max-width: 900px) {
+  .listitem-container p {
+    font-size: 1.3rem;
+  }
+}

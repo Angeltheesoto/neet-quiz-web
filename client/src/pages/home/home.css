@@ -5,8 +5,34 @@
   padding: 0 3rem;
 }
 
+.home-genre-container[data-scrollbar-theme="dark"]::-webkit-scrollbar {
+  width: 0px;
+  height: 10px;
+  background-color: #262626;
+}
+
+.home-genre-container[data-scrollbar-theme="dark"]::-webkit-scrollbar-thumb {
+  background-color: #121212;
+}
+
+.home-genre-container[data-scrollbar-theme="light"]::-webkit-scrollbar {
+  width: 0px;
+  height: 10px;
+  background-color: #eee;
+}
+
+.home-genre-container[data-scrollbar-theme="light"]::-webkit-scrollbar-thumb {
+  background-color: lightgray;
+}
+
 .home-quizname-container {
   padding: 3rem;
+}
+
+@media screen and (max-width: 1000px) {
+  .home-quizname-container {
+    padding: 3rem 0;
+  }
 }
 
 .home-quizlist-container {
